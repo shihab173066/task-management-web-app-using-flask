@@ -12,7 +12,7 @@
     .navbar {
       background-color: black;
     }
-    .navbar-brand, .nav-link, .nav-icons {
+    .navbar-brand, .nav-link {
       margin-left: 8px;
     }
     .nav-link {
@@ -40,6 +40,18 @@
       text-align: center;
       margin: 0 15px; /* some margin on sides */
     }
+    /* Mobile adjustments */
+    @media (max-width: 576px) {
+      .date-time-container {
+        margin-top: 10px;
+        width: 100%;
+        text-align: center;
+      }
+      .nav-icons {
+        margin-top: 10px;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -47,7 +59,10 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand text-white" href="{{url_for('index')}}">Shihab's ToDo App</a>
-      <div class="collapse navbar-collapse">
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="{{url_for('index')}}">Home</a>
@@ -70,15 +85,15 @@
 
   <script>
     function updateDateTime() {
-    const now = new Date();
-    const date = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
-    
-    const hours24 = now.getHours();
-    const hours12 = hours24 % 12 || 12; // Convert to 12-hour format
-    const ampm = hours24 >= 12 ? 'PM' : 'AM'; // Determine AM/PM
-    const time = `${String(hours12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')} ${ampm}`;
-    
-    document.getElementById('dateTime').innerText = `${date} ${time}`;
+      const now = new Date();
+      const date = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+      
+      const hours24 = now.getHours();
+      const hours12 = hours24 % 12 || 12; // Convert to 12-hour format
+      const ampm = hours24 >= 12 ? 'PM' : 'AM'; // Determine AM/PM
+      const time = `${String(hours12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')} ${ampm}`;
+      
+      document.getElementById('dateTime').innerText = `${date} ${time}`;
     }
 
     setInterval(updateDateTime, 1000); // Update every second

@@ -65,7 +65,7 @@ Shihab TMS
   <marquee class="mt-4 display-6 fw-bold text-danger" behavior="" direction="">
     No ToDo inserted yet!!.... Create new Todo in Todo form
 </marquee>
-  {% endif %} <br />
+  {% endif %} <br /><br /><br /><br />
 
   {% for todo in todo_list %}
   <div class="border-start border-5 mt-3 shadow">
@@ -80,6 +80,6 @@ Shihab TMS
       <a class="badge bg-danger" href="/delete/{{ todo.id }}">Delete</a>
     </div>
   </div>
-  {% endfor %}
+  {% endfor %} <br /><br /><br /><br />
 </div>
 {% endblock %}
